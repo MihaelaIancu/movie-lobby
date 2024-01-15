@@ -4,14 +4,22 @@
   }
 
   .movies-list-container {
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .movie-item-container {
+    width: 90%;
   }
 
   .movies-category-wrap {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-row-gap: 5px;
-    justify-content: center;
+    justify-items: center;
+    align-items: center;
   }
 
   .movie-item-container {
@@ -23,16 +31,31 @@
 
 .mobile.landscape {
   .movies-list-container {
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
+
+  .movie-item-container {
+    width: 40%;
+  }
+
   .movies-category-wrap {
     display: flex;
     justify-content: flex-start;
+
+    button {
+      font-size: 12px;
+    }
+  }
+
+  .movies-list-container {
+    justify-items: unset;
   }
 
   .movie-item-container {
     button {
-      font-size: 12px;
+      font-size: 10px;
     }
   }
 }

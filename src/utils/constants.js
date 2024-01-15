@@ -4,5 +4,4 @@ export const moviesCategories = [
   "Drama",
   "Animation",
   "Comedies",
-  "Horror",
 ];
