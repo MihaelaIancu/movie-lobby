@@ -1,4 +1,4 @@
-#### [https://MihaelaIancu.github.io/movie-lobby](https://MihaelaIancu.github.io/movie-lobby}
+#### [https://MihaelaIancu.github.io/movie-lobby](https://MihaelaIancu.github.io/movie-lobby)
 
 # Getting Started with Create React App
 
