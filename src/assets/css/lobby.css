@@ -1,0 +1,20 @@
+.lobby-header {
+  color: var(--retro-pink);
+  text-align: center;
+}
+
+.lobby-container {
+  margin: 10px auto;
+  width: 90%;
+  height: 100%;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  background-color: var(--retro-nude);
+  border: 2px solid var(--retro-blue);
+  border-radius: 10px;
+}

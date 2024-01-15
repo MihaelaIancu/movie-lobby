@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { isMobileAgent, isPortraitOrientation } from "./utils/responsive";
+import { MoviesLobby } from "./view/common/MoviesLobby";
+import { SearchBar } from "./view/common/SearchBar";
+
+const isMobile = isMobileAgent() ? "mobile" : "";
+const isPortrait = isPortraitOrientation() ? "portrait" : "landscape";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`lobby ${isMobile} ${isPortrait}`}>
+      <h1 className="lobby-header">Movies Lobby</h1>
+      <div className="lobby-container">
+        <SearchBar />
+        <MoviesLobby />
+      </div>
     </div>
   );
 }

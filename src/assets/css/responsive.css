@@ -1,0 +1,38 @@
+.mobile {
+  .search-bar-container {
+    width: 95%;
+  }
+
+  .movies-list-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .movies-category-wrap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-row-gap: 5px;
+    justify-content: center;
+  }
+
+  .movie-item-container {
+    button {
+      font-size: 10px;
+    }
+  }
+}
+
+.mobile.landscape {
+  .movies-list-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .movies-category-wrap {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .movie-item-container {
+    button {
+      font-size: 12px;
+    }
+  }
+}
