@@ -18,8 +18,10 @@ export function MovieItem({ title, image, releaseDate, onClick, id }) {
         <div>{releaseDate}</div>
       </div>
 
-      {favCategorySelected(selectedCategory) && isInFavList(id, favMovies) ? (
-        <button onClick={onClick}>Remove</button>
+      {isInFavList(id, favMovies) ? (
+        <button className="remove-button" onClick={onClick}>
+          Remove
+        </button>
       ) : (
         <button onClick={onClick}>Add to favourite</button>
       )}

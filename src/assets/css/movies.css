@@ -102,3 +102,11 @@
   cursor: none;
   opacity: 0.5;
 }
+
+.movie-item-container {
+  button.remove-button {
+    background-color: var(--dark-nude);
+    color: var(--retro-pink);
+    border-color: var(--dark-nude);
+  }
+}
