@@ -9,7 +9,10 @@ import { setFavMovies, setMovies } from "../../features/movies/moviesSlice";
 import { popularMoviesUrl } from "../../app/config";
 import axios from "axios";
 import {
+  emptyList,
   favCategory,
+  favCategorySelected,
+  isInFavList,
   moviesGenres,
   popularCategory,
 } from "../../utils/constants";
@@ -19,7 +22,6 @@ export function MoviesList({ categoryIndex }) {
   const movies = useSelector(getMovieList);
   const favMovies = useSelector(getFavMovieList);
   const [filteredMovies, setFilteredMovies] = useState(movies);
-  const isFavCategory = categoryIndex === favCategory;
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -52,13 +54,18 @@ export function MoviesList({ categoryIndex }) {
   }, [movies, favMovies, categoryIndex]);
 
   const onClickHandler = (item) => {
-    dispatch(setFavMovies([...new Set([...favMovies, item])]));
+    if (isInFavList(item.id, favMovies)) {
+      dispatch(setFavMovies(favMovies.filter((elem) => elem.id !== item.id)));
+    } else {
+      dispatch(setFavMovies([...new Set([...favMovies, item])]));
+    }
   };
 
   return (
     <div className="movies-list-container">
       {filteredMovies?.map((elem, index) => (
         <MovieItem
+          id={elem.id}
           key={`movie_${index}`}
           title={elem.title}
           image={elem.poster_path}
@@ -66,7 +73,7 @@ export function MoviesList({ categoryIndex }) {
           onClick={() => onClickHandler(elem)}
         />
       ))}
-      {isFavCategory && favMovies.length === 0 && (
+      {favCategorySelected(categoryIndex) && emptyList(favMovies) && (
         <div className="no-movie">No favourite movies added..</div>
       )}
     </div>

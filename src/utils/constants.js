@@ -16,6 +16,14 @@ export const popularCategory = 0;
 
 export const favCategory = 1;
 
+export const emptyList = (movies) => movies.length === 0;
+
+export const favCategorySelected = (category) => category === favCategory;
+
+export const isInFavList = (movieId, movies) => {
+  return movies.find((elem) => elem.id === movieId);
+};
+
 // export const fetchMoviesGenres = () => {
 //   const fetchMovies = async () => {
 //     const response = await axios
