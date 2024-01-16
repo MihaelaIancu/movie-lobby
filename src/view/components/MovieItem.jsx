@@ -1,4 +1,4 @@
-export function MovieItem({ title, image, releaseDate }) {
+export function MovieItem({ title, image, releaseDate, onClick }) {
   return (
     <div className="movie-item-container">
       <div className="movie-item-image">
@@ -8,7 +8,7 @@ export function MovieItem({ title, image, releaseDate }) {
         <div>{title}</div>
         <div>{releaseDate}</div>
       </div>
-      <button>Add to favourite</button>
+      <button onClick={onClick}>Add to favourite</button>
     </div>
   );
 }

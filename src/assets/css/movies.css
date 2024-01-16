@@ -26,6 +26,12 @@
     color: var(--retro-pink);
     font-weight: bold;
   }
+
+  .active {
+    background-color: var(--retro-blue);
+    color: var(--dark-nude);
+    font-weight: bold;
+  }
 }
 
 .movies-list-container {
@@ -47,6 +53,7 @@
   border-radius: 5px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
 
   img {
@@ -82,4 +89,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.no-movie {
+  color: var(--retro-pink);
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.disabled {
+  pointer-events: none;
+  cursor: none;
+  opacity: 0.5;
 }
