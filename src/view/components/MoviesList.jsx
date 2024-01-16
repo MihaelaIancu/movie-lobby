@@ -32,7 +32,8 @@ export function MoviesList({ categoryIndex }) {
     };
 
     fetchMovies();
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (categoryIndex === popularCategory) {
