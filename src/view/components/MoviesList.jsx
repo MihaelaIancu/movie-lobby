@@ -1,13 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { MovieItem } from "./MovieItem";
-import {
-  getFavMovieList,
-  getMovieList,
-} from "../../features/movies/moviesSelectors";
 import { useEffect, useState } from "react";
-import { setFavMovies, setMovies } from "../../features/movies/moviesSlice";
-import { popularMoviesUrl } from "../../app/config";
-import axios from "axios";
+
 import {
   emptyList,
   favCategory,
@@ -16,6 +9,14 @@ import {
   moviesGenres,
   popularCategory,
 } from "../../utils/constants";
+import {
+  getFavMovieList,
+  getMovieList,
+} from "../../app/selectors/moviesSelectors";
+import { setFavMovies, setMovies } from "../../app/slices/moviesSlice";
+import { popularMoviesUrl } from "../../app/config";
+import { MovieItem } from "./MovieItem";
+import axios from "axios";
 
 export function MoviesList({ categoryIndex }) {
   const dispatch = useDispatch();

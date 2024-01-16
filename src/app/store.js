@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { moviesReducer } from "../features/movies/moviesSlice";
-import { categoriesReducer } from "../features/categories/categoriesSlice";
+import { moviesReducer } from "../app/slices/moviesSlice";
+import { categoriesReducer } from "../app/slices/categoriesSlice";
 
 const appReducers = combineReducers({
   localMovies: moviesReducer,

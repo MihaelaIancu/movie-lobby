@@ -1,4 +1,5 @@
 import "./App.css";
+
 import { isMobileAgent, isPortraitOrientation } from "./utils/responsive";
 import { MoviesLobby } from "./view/common/MoviesLobby";
 import { SearchBar } from "./view/common/SearchBar";

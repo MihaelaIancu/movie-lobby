@@ -1,12 +1,11 @@
 import { useSelector } from "react-redux";
+
 import { imagePath } from "../../app/config";
-import { getFavMovieList } from "../../features/movies/moviesSelectors";
-import { getSelectedCategoryIndex } from "../../features/categories/categoriesSelectors";
-import { favCategorySelected, isInFavList } from "../../utils/constants";
+import { getFavMovieList } from "../../app/selectors/moviesSelectors";
+import { isInFavList } from "../../utils/constants";
 
 export function MovieItem({ title, image, releaseDate, onClick, id }) {
   const favMovies = useSelector(getFavMovieList);
-  const selectedCategory = useSelector(getSelectedCategoryIndex);
 
   return (
     <div className="movie-item-container">

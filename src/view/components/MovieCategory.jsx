@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
-import { setCategory } from "../../features/categories/categoriesSlice";
+
+import { setCategory } from "../../app/slices/categoriesSlice";
 
 export function MovieCategory({ title, index, isSelected }) {
   const dispatch = useDispatch();

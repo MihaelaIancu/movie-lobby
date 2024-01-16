@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux";
+
 import { moviesCategories } from "../../utils/constants";
 import { MovieCategory } from "../components/MovieCategory";
 import { MoviesList } from "../components/MoviesList";
-import { getSelectedCategoryIndex } from "../../features/categories/categoriesSelectors";
+import { getSelectedCategoryIndex } from "../../app/selectors/categoriesSelectors";
 
 export function MoviesLobby() {
   const selectedCategory = useSelector(getSelectedCategoryIndex);
