@@ -1,49 +1,45 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import {
   emptyList,
-  favCategory,
   favCategorySelected,
+  fetchMovies,
   isInFavList,
   moviesGenres,
-  popularCategory,
+  popularCategorySelected,
 } from "../../utils/constants";
 import {
   getFavMovieList,
   getMovieList,
 } from "../../app/selectors/moviesSelectors";
-import { setFavMovies, setMovies } from "../../app/slices/moviesSlice";
 import { popularMoviesUrl } from "../../app/config";
+import { setFavMovies } from "../../app/slices/moviesSlice";
 import { MovieItem } from "./MovieItem";
-import axios from "axios";
+import { getPageIndex } from "../../app/selectors/pageSelectors";
+import { setPage } from "../../app/slices/pageSlice";
 
 export function MoviesList({ categoryIndex }) {
   const dispatch = useDispatch();
+
   const movies = useSelector(getMovieList);
   const favMovies = useSelector(getFavMovieList);
+  const pageIndex = useSelector(getPageIndex);
+
   const [filteredMovies, setFilteredMovies] = useState(movies);
+  const containerRef = useRef(null);
 
   useEffect(() => {
-    const fetchMovies = async () => {
-      const response = await axios
-        .get(`${popularMoviesUrl}`)
-        .catch((err) => console.log(err));
-
-      const data = await response.data;
-      dispatch(setMovies(data.results));
-    };
-
-    fetchMovies();
+    fetchMovies(`${popularMoviesUrl}&page=${pageIndex}`, dispatch);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [pageIndex]);
 
   useEffect(() => {
-    if (categoryIndex === popularCategory) {
+    if (popularCategorySelected(categoryIndex)) {
       setFilteredMovies(movies);
     }
 
-    if (categoryIndex === favCategory) {
+    if (favCategorySelected(categoryIndex)) {
       favMovies && setFilteredMovies(favMovies);
     }
 
@@ -62,8 +58,23 @@ export function MoviesList({ categoryIndex }) {
     }
   };
 
+  const handleScroll = () => {
+    const container = containerRef.current;
+    if (
+      container &&
+      container.scrollTop + container.clientHeight === container.scrollHeight
+    ) {
+      // User has scrolled to the bottom
+      dispatch(setPage()); // Load the next page
+    }
+  };
+
   return (
-    <div className="movies-list-container">
+    <div
+      className="movies-list-container"
+      ref={containerRef}
+      onScroll={handleScroll}
+    >
       {filteredMovies?.map((elem, index) => (
         <MovieItem
           id={elem.id}
