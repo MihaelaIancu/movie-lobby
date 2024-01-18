@@ -57,7 +57,7 @@ body {
   }
 
   .movies-list-container {
-    justify-items: unset;
+    justify-items: center;
   }
 
   .movie-item-container {
