@@ -36,6 +36,7 @@
 
 .movies-list-container {
   margin-top: 20px;
+  height: 400px;
   width: 100%;
   border: 2px solid var(--retro-green);
   background-color: var(--retro-green);
@@ -45,6 +46,7 @@
   grid-template-columns: repeat(5, 1fr);
   grid-column-gap: 15px;
   grid-row-gap: 15px;
+  overflow-y: scroll;
 }
 
 .movie-item-container {
@@ -89,6 +91,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .no-movie {

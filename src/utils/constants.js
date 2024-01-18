@@ -30,11 +30,19 @@ export const isInFavList = (movieId, movies) => {
   return movies.find((elem) => elem.id === movieId);
 };
 
-export const fetchMovies = async (url, dispatch) => {
-  const response = await axios.get(url).catch((err) => console.log(err));
+export const fetchMovies = async (url, page, movies, dispatch) => {
+  const response = await axios
+    .get(`${url}&page=${page}`)
+    .catch((err) => console.log(err));
 
   const data = await response.data;
-  console.log(data);
+  dispatch(setMovies([...movies, ...data.results]));
+};
+
+export const fetchMoviesAtSearch = async (url, dispatch) => {
+  const response = await axios.get(`${url}`).catch((err) => console.log(err));
+
+  const data = await response.data;
   dispatch(setMovies(data.results));
 };
 

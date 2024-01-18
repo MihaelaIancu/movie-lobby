@@ -14,7 +14,9 @@ import {
   getMovieList,
 } from "../../app/selectors/moviesSelectors";
 import { popularMoviesUrl } from "../../app/config";
-import { setFavMovies } from "../../app/slices/moviesSlice";
+import {
+  setFavMovies,
+} from "../../app/slices/moviesSlice";
 import { MovieItem } from "./MovieItem";
 import { getPageIndex } from "../../app/selectors/pageSelectors";
 import { setPage } from "../../app/slices/pageSlice";
@@ -30,9 +32,9 @@ export function MoviesList({ categoryIndex }) {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    fetchMovies(`${popularMoviesUrl}&page=${pageIndex}`, dispatch);
+    fetchMovies(popularMoviesUrl, pageIndex, movies, dispatch);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pageIndex]);
+  }, []);
 
   useEffect(() => {
     if (popularCategorySelected(categoryIndex)) {
@@ -64,8 +66,9 @@ export function MoviesList({ categoryIndex }) {
       container &&
       container.scrollTop + container.clientHeight === container.scrollHeight
     ) {
-      // User has scrolled to the bottom
-      dispatch(setPage()); // Load the next page
+      
+      dispatch(setPage()); 
+      fetchMovies(popularMoviesUrl, pageIndex + 1, movies, dispatch);
     }
   };
 

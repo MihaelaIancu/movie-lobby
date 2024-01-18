@@ -1,23 +1,19 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { popularMoviesUrl, searchMoviesUrl } from "../../app/config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { fetchMovies } from "../../utils/constants";
-import { getPageIndex } from "../../app/selectors/pageSelectors";
+import { fetchMoviesAtSearch } from "../../utils/constants";
 
 export function SearchBar() {
   const dispatch = useDispatch();
   const [userInput, setUserInput] = useState("");
-  const pageIndex = useSelector(getPageIndex);
 
   const getCorrectUrl = () => {
-    const searchUrl = `${searchMoviesUrl}&query=${userInput}&page=${pageIndex}`;
+    const searchUrl = `${searchMoviesUrl}&query=${userInput}`;
 
-    return userInput !== ""
-      ? searchUrl
-      : `${popularMoviesUrl}&page=${pageIndex}`;
+    return userInput !== "" ? searchUrl : `${popularMoviesUrl}&page=1`;
   };
 
   const onChangeHandler = (event) => {
@@ -25,12 +21,12 @@ export function SearchBar() {
   };
 
   const onClickHandler = () => {
-    fetchMovies(getCorrectUrl(), dispatch);
+    fetchMoviesAtSearch(getCorrectUrl(), dispatch);
   };
 
   const onKeyHandler = (event) => {
     if (event.key === "Enter") {
-      fetchMovies(getCorrectUrl(), dispatch);
+      fetchMoviesAtSearch(getCorrectUrl(), dispatch);
     }
   };
 
