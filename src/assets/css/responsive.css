@@ -1,3 +1,9 @@
+.mobile html,
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
 .mobile {
   .search-bar-container {
     width: 95%;
@@ -8,6 +14,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: fit-content;
   }
 
   .movie-item-container {
