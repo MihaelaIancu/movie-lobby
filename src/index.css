@@ -8,8 +8,8 @@
   --retro-nude: #d6cc99;
   --retro-pink: #fde5d4;
   --retro-green: #445d48;
-  --dark-nude: #BCA37F;
-  --light-nude: #F5EEC8;
+  --dark-nude: #bca37f;
+  --light-nude: #f5eec8;
 }
 
 * {
@@ -23,3 +23,12 @@ body {
   background-color: var(--retro-blue);
 }
 
+@media only screen and (max-width: 650px) {
+  .movies-category-wrap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-row-gap: 5px;
+    justify-items: center;
+    align-items: center;
+  }
+}
