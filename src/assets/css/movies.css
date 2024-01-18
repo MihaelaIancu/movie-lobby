@@ -117,3 +117,7 @@
     border-color: var(--dark-nude);
   }
 }
+
+.movies-list-container::-webkit-scrollbar-thumb {
+  height: 100px;
+}
