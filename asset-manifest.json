@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/movie-lobby/static/css/main.ba698240.css",
+    "main.css": "/movie-lobby/static/css/main.be6dbacc.css",
     "main.js": "/movie-lobby/static/js/main.7a825dec.js",
     "static/media/poster-placeholder.png": "/movie-lobby/static/media/poster-placeholder.5ed52dd9ba109c67f160.png",
     "index.html": "/movie-lobby/index.html",
-    "main.ba698240.css.map": "/movie-lobby/static/css/main.ba698240.css.map",
+    "main.be6dbacc.css.map": "/movie-lobby/static/css/main.be6dbacc.css.map",
     "main.7a825dec.js.map": "/movie-lobby/static/js/main.7a825dec.js.map"
   },
   "entrypoints": [
-    "static/css/main.ba698240.css",
+    "static/css/main.be6dbacc.css",
     "static/js/main.7a825dec.js"
   ]
 }
