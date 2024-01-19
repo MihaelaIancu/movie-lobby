@@ -20,7 +20,6 @@
     margin-right: 10px;
     cursor: pointer;
     -webkit-appearance: none;
-    appearance: none;
   }
 
   button:hover {
@@ -73,7 +72,6 @@
     height: 25px;
     cursor: pointer;
     -webkit-appearance: none;
-    appearance: none;
   }
 
   button:hover {
