@@ -32,14 +32,4 @@ body {
     justify-items: center;
     align-items: center;
   }
-
-  .movies-list-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-
-  .movie-item-container {
-    width: 40%;
-  }
 }
