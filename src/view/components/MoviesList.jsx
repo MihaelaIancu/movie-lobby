@@ -10,16 +10,18 @@ import {
   popularCategorySelected,
 } from "../../utils/constants";
 import {
+  getErrorMessage,
   getFavMovieList,
+  getLoadingState,
   getMovieList,
 } from "../../app/selectors/moviesSelectors";
 import { popularMoviesUrl } from "../../app/config";
-import {
-  setFavMovies,
-} from "../../app/slices/moviesSlice";
+import { setFavMovies } from "../../app/slices/moviesSlice";
 import { MovieItem } from "./MovieItem";
 import { getPageIndex } from "../../app/selectors/pageSelectors";
 import { setPage } from "../../app/slices/pageSlice";
+import { LoadingMessage } from "../common/LoadingMessage";
+import { LoadingSpinner } from "../common/LoadingSpinner";
 
 export function MoviesList({ categoryIndex }) {
   const dispatch = useDispatch();
@@ -27,6 +29,8 @@ export function MoviesList({ categoryIndex }) {
   const movies = useSelector(getMovieList);
   const favMovies = useSelector(getFavMovieList);
   const pageIndex = useSelector(getPageIndex);
+  const error = useSelector(getErrorMessage);
+  const loading = useSelector(getLoadingState);
 
   const [filteredMovies, setFilteredMovies] = useState(movies);
   const containerRef = useRef(null);
@@ -66,8 +70,7 @@ export function MoviesList({ categoryIndex }) {
       container &&
       container.scrollTop + container.clientHeight === container.scrollHeight
     ) {
-      
-      dispatch(setPage()); 
+      dispatch(setPage());
       fetchMovies(popularMoviesUrl, pageIndex + 1, movies, dispatch);
     }
   };
@@ -78,19 +81,25 @@ export function MoviesList({ categoryIndex }) {
       ref={containerRef}
       onScroll={handleScroll}
     >
-      {filteredMovies?.map((elem, index) => (
-        <MovieItem
-          id={elem.id}
-          key={`movie_${index}`}
-          title={elem.title}
-          image={elem.poster_path}
-          releaseDate={elem.release_date}
-          onClick={() => onClickHandler(elem)}
-        />
-      ))}
-      {favCategorySelected(categoryIndex) && emptyList(favMovies) && (
-        <div className="no-movie">No favourite movies added..</div>
+      {filteredMovies &&
+        filteredMovies?.map((elem, index) => (
+          <MovieItem
+            id={elem.id}
+            key={`movie_${index}`}
+            title={elem.title}
+            image={elem.poster_path}
+            releaseDate={elem.release_date}
+            onClick={() => onClickHandler(elem)}
+          />
+        ))}
+
+      {emptyList(filteredMovies) ? (
+        <LoadingMessage message="No movies found" />
+      ) : (
+        error && <LoadingMessage message="Error while loading your movies" />
       )}
+
+      {loading && <LoadingSpinner />}
     </div>
   );
 }

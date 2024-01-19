@@ -1,5 +1,9 @@
 import axios from "axios";
-import { setMovies } from "../app/slices/moviesSlice";
+import {
+  setMovies,
+  setMoviesError,
+  setMoviesLoading,
+} from "../app/slices/moviesSlice";
 
 export const moviesCategories = [
   "Popular",
@@ -31,19 +35,28 @@ export const isInFavList = (movieId, movies) => {
 };
 
 export const fetchMovies = async (url, page, movies, dispatch) => {
-  const response = await axios
-    .get(`${url}&page=${page}`)
-    .catch((err) => console.log(err));
+  dispatch(setMoviesLoading());
 
-  const data = await response.data;
-  dispatch(setMovies([...movies, ...data.results]));
+  try {
+    const response = await axios.get(`${url}&page=${page}`);
+    const data = await response.data;
+    dispatch(setMovies([...movies, ...data.results]));
+  } catch (error) {
+    dispatch(setMoviesError(error.message));
+  }
 };
 
 export const fetchMoviesAtSearch = async (url, dispatch) => {
-  const response = await axios.get(`${url}`).catch((err) => console.log(err));
+  dispatch(setMoviesLoading());
 
-  const data = await response.data;
-  dispatch(setMovies(data.results));
+  try {
+    const response = await axios.get(`${url}`);
+
+    const data = await response.data;
+    dispatch(setMovies(data.results));
+  } catch (error) {
+    dispatch(setMoviesError(error.message));
+  }
 };
 
 // export const fetchMoviesGenres = () => {
