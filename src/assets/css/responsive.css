@@ -65,3 +65,19 @@
     }
   }
 }
+
+.lobby.portrait {
+  .movies-list-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .movie-item-container {
+    min-height: 300px;
+  }
+}
+
+.lobby.landscape {
+  .movies-list-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
