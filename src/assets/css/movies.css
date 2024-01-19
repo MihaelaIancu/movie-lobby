@@ -70,7 +70,6 @@
   button {
     background-color: var(--light-nude);
     border: 2px solid var(--dark-nude);
-    border-radius: 5px;
     width: 90%;
     height: 25px;
     cursor: pointer;
@@ -86,9 +85,17 @@
   }
 }
 
+.movie-item-container > button {
+  border-radius: 5px;
+}
+
 .movie-item-image {
   display: block;
   margin: 10px auto;
+
+  img {
+    border-radius: 5px;
+  }
 }
 
 .movie-item-info {
